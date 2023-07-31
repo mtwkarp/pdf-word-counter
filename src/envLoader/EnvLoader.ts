@@ -4,10 +4,10 @@ class EnvLoader {
     dotenv.config();
 
     const { mode } = process.env;
+    this.loadDevEnvVariables();
+    // if (mode === 'development' || mode === 'test') this.loadDevEnvVariables();
 
-    if (mode === 'development' || mode === 'test') this.loadDevEnvVariables();
-
-    if (mode === 'production') this.loadProdEnvVariables();
+    // if (mode === 'production') this.loadProdEnvVariables();
   }
 
   private static loadDevEnvVariables(): void {

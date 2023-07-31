@@ -4,6 +4,16 @@ import request from 'request';
 export default class PDFKeywordsFinder {
   constructor() {}
 
+  private buildDynamicRegExp(words: string[]) {
+    // Escape special characters in the words
+    const escapedWords = words.map((word) => word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
+
+    // Join the words with the '|' operator for alternation
+    const pattern = '\\b(?:' + escapedWords.join('|') + ')\\b';
+
+    // Return the constructed regular expression
+    return new RegExp(pattern, 'gi');
+  }
   async read(fileLink: string, keywords: string[]): Promise<string> {
     return new Promise(async(resolve) => {
       const foundedWords: Record<string, { number: number }> = {};

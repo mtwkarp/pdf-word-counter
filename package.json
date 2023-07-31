@@ -4,7 +4,7 @@
   "description": "",
   "main": "src/index.ts",
   "scripts": {
-    "dev": "mode=development ts-node-dev src/index.ts --watch /src",
+    "dev": "ts-node-dev src/index.ts --watch /src",
     "production": "mode=production node build/bundle.js",
     "lintfix:all": "eslint --fix",
     "prettier-format": "prettier --config .prettierrc --write",

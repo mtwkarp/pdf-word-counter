@@ -2,14 +2,74 @@
   "name": "pdf-word-counter",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
-  "type": "module",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "main": "src/index.ts",
+  "engines": {
+    "node": "16.18.1"
   },
-  "author": "",
+  "scripts": {
+    "dev": "mode=development ts-node-dev src/index.ts --watch /src",
+    "production": "mode=production node --optimize_for_size --max_old_space_size=460 build/bundle.js",
+    "lintfix:all": "eslint --fix",
+    "prettier-format": "prettier --config .prettierrc --write",
+    "prepare": "husky install",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "Matvii Karpenko",
   "license": "ISC",
+  "bugs": {
+    "url": ""
+  },
+  "homepage": "",
+  "lint-staged": {
+    "src/**/*.{js,ts}": [
+      "npm run prettier-format",
+      "npm run lintfix:all"
+    ]
+  },
   "dependencies": {
-    "pdfreader": "^3.0.0"
+    "@google-cloud/local-auth": "^2.1.1",
+    "@types/gapi": "^0.0.43",
+    "@types/node": "^18.13.0",
+    "@types/node-cron": "^3.0.7",
+    "dotenv": "^16.0.3",
+    "eventemitter3": "^5.0.0",
+    "fs": "^0.0.1-security",
+    "google-auth-library": "^8.7.0",
+    "googleapis": "^108.0.0",
+    "node-cron": "^3.0.2",
+    "node-fetch": "^2.6.12",
+    "node-telegram-bot-api": "^0.57.0",
+    "nodemon": "^2.0.16",
+    "path": "^0.12.7",
+    "pdfreader": "^2.0.0",
+    "process": "^0.11.10",
+    "request": "^2.88.2",
+    "telegraf": "^4.11.2",
+    "typegram": "^4.3.0"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.13",
+    "@types/request": "^2.48.8",
+    "@typescript-eslint/eslint-plugin": "^5.49.0",
+    "@typescript-eslint/parser": "^5.49.0",
+    "eslint": "^8.32.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-config-standard-with-typescript": "^32.0.0",
+    "husky": "^8.0.0",
+    "lint-staged": "^13.2.3",
+    "prettier": "^2.8.8",
+    "ts-loader": "^9.4.2",
+    "ts-node": "^10.9.1",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^4.9.4",
+    "webpack-cli": "^5.0.0",
+    "webpack-node-externals": "^3.0.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-airbnb-typescript": "^17.0.0",
+    "eslint-plugin-unused-imports": "^2.0.0"
   }
 }

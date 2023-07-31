@@ -4,6 +4,7 @@ import PrivateScopeManager from './user/PrivateScopeManager';
 import PrivateUpdateSubject from './tglib/botUpdatesObservers/PrivateUpdateSubject';
 import { type PRIVATE_UPDATE_TYPES } from './tglib/tgTypes/botUpdatesTypes';
 import GoogleServicesManager from './googleServices/GoogleServicesManager';
+import ServerExpress from './expressServer/ServerExpress';
 export default class MyBot {
   public bot: TelegrafBot;
   private privateUpdateSubject: PrivateUpdateSubject;
@@ -17,6 +18,7 @@ export default class MyBot {
 
   public async init(): Promise<void> {
     this.initEnvironmentVariables();
+    new ServerExpress();
     await this.initGoogleServices();
     await this.initBot();
     this.initPrivateUpdateSubject();

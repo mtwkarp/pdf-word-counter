@@ -24,6 +24,8 @@ export default class ReadPdfCmd extends PrivateCmdHandler {
   }
 
   protected override async onDocument(contextDecorator: IPrivateContextDecorator) {
+    await this.sendMessage('Наберись терпіння, це може зайняти трохи часу...');
+
     const payload = contextDecorator.payload as IPrivateDocumentPayload;
     const { file_id } = payload.document;
     const fileLink = await this.tg.getFileLink(file_id);
@@ -31,7 +33,7 @@ export default class ReadPdfCmd extends PrivateCmdHandler {
 
     const words = await this.pdfKeywordsFinder.read(fileLink.href, keywords);
 
-    this.sendMessage(words);
+    await this.sendMessage(words);
   }
 
   // private
